@@ -52,13 +52,22 @@ module Enumerable
   
     my_each_with_index do |value, index|
       next if index == 0 && !initial_value
-  
+
       reduced_value = yield reduced_value, value
     end
-  
+
     reduced_value
   end
 
+  def my_map
+    modified_arr = []
+
+    my_each do |item|
+      modified_arr << (yield item)
+    end
+
+    modified_arr
+  end
 end
 
 # You will first have to define my_each
