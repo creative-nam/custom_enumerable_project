@@ -27,6 +27,18 @@ module Enumerable
     false
   end
 
+  def my_count
+    return self.size unless block_given?
+
+    truthy_values = 0
+
+    my_each do |value|
+      yield value and truthy_values += 1
+    end
+
+    truthy_values
+  end
+
   def my_each
     for item in self do
       yield item
