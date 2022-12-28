@@ -46,6 +46,19 @@ module Enumerable
 
     self
   end
+
+  def my_inject(initial_value = nil)
+    reduced_value = initial_value ? initial_value : self[0]
+  
+    my_each_with_index do |value, index|
+      next if index == 0 && !initial_value
+  
+      reduced_value = yield reduced_value, value
+    end
+  
+    reduced_value
+  end
+
 end
 
 # You will first have to define my_each
