@@ -68,6 +68,14 @@ module Enumerable
 
     modified_arr
   end
+
+  def my_none?
+    if block_given?
+      !my_any? { |value| yield value }
+    else
+      my_any? { |value| !!value == false }
+    end
+  end
 end
 
 # You will first have to define my_each
