@@ -1,5 +1,19 @@
 module Enumerable
   # Your code goes here
+  def my_any?
+    if block_given?
+      self.my_each do |value|
+        yield value and return true
+      end
+    else
+      self.my_each do |value|
+        return true if value
+      end
+    end
+  
+    false
+  end
+
   def my_each
     for item in self do
       yield item
