@@ -1,5 +1,18 @@
 module Enumerable
   # Your code goes here
+  def my_all?
+    if block_given?
+      my_each do |value|
+        yield value or return false
+      end
+
+      true
+    else
+      # Check if there's any value which *isn't* truthy, and return accordingly
+      my_any? { |value| !value } ? false : true
+    end
+  end
+
   def my_any?
     if block_given?
       self.my_each do |value|
@@ -10,7 +23,7 @@ module Enumerable
         return true if value
       end
     end
-  
+
     false
   end
 
