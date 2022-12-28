@@ -47,6 +47,18 @@ module Enumerable
     self
   end
 
+  def my_each_with_index
+    counter = 0
+
+    for value in self do
+      yield value, counter
+
+      counter += 1
+    end
+
+    self
+  end
+
   def my_inject(initial_value = nil)
     reduced_value = initial_value ? initial_value : self[0]
   
