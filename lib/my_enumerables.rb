@@ -76,12 +76,15 @@ module Enumerable
       my_any? { |value| !!value == false }
     end
   end
-end
 
-# You will first have to define my_each
-# on the Array class. Methods defined in
-# your enumerable module will have access
-# to this method
-class Array
-  # Define my_each here
+  def my_select
+    selected_items = []
+  
+    my_each do |item|
+      matches_condition = yield item
+      selected_items << item if matches_condition
+    end
+  
+    selected_items
+  end
 end
